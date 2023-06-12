@@ -45,7 +45,8 @@ int is_palindrome(listint_t **head)
 
     int size = 0, i;
 
-    for (listint_t *tmp = *head; tmp != NULL; tmp = tmp->next)
+    listint_t *tmp;
+    for (tmp = *head; tmp != NULL; tmp = tmp->next)
         size++;
 
     int midIndex = size / 2;
@@ -58,18 +59,18 @@ int is_palindrome(listint_t **head)
 
     reverse_listint(head);
 
-    listint_t *tmp = *head;
+    listint_t *tmp2 = *head;
 
     for (i = 0; i < midIndex; i++)
-        tmp = tmp->next;
+        tmp2 = tmp2->next;
 
-    while (tmp != NULL)
+    while (tmp2 != NULL)
     {
-        if ((*head)->n != tmp->n)
+        if ((*head)->n != tmp2->n)
             return (0);
 
         *head = (*head)->next;
-        tmp = tmp->next;
+        tmp2 = tmp2->next;
     }
 
     return (1);
