@@ -1,4 +1,3 @@
-
 #include "lists.h"
 
 listint_t *reverse_listint(listint_t **head);
@@ -12,17 +11,23 @@ int is_palindrome(listint_t **head);
  */
 listint_t *reverse_listint(listint_t **head)
 {
-    if (!*head || !(*head)->next)
+    if (*head == NULL || (*head)->next == NULL)
         return (*head);
-    listint_t *prev = NULL, *next = NULL, *current = *head;
-    while (current)
+
+    listint_t *prev = NULL;
+    listint_t *current = *head;
+    listint_t *next = NULL;
+
+    while (current != NULL)
     {
         next = current->next;
         current->next = prev;
         prev = current;
         current = next;
     }
+
     *head = prev;
+
     return (*head);
 }
 
@@ -35,46 +40,37 @@ listint_t *reverse_listint(listint_t **head)
  */
 int is_palindrome(listint_t **head)
 {
-    if (!*head || !(*head)->next)
+    if (*head == NULL || (*head)->next == NULL)
         return (1);
+
     int size = 0, i;
-    listint_t *slow_ptr = NULL, *fast_ptr = NULL, *tmp_head = NULL, *tmp_tail = NULL, 
-                *left_half_ptr = NULL, *right_half_ptr = NULL;
 
-    slow_ptr=fast_ptr=*head;
-
-    while(fast_ptr && fast_ptr->next){
+    for (listint_t *tmp = *head; tmp != NULL; tmp = tmp->next)
         size++;
-        slow_ptr=slow_ptr->next;
-        fast_ptr=fast_ptr->next->next;
-    }
 
-    if (fast_ptr == NULL) {
-        right_half_ptr=slow_ptr;
-        left_half_ptr=reverse_listint(head);
-    }
-    else {
-        right_half_ptr=slow_ptr->next;
-        left_half_ptr=reverse_listint(&slow_ptr);
-    }
+    int midIndex = size / 2;
 
-    tmp_head=tmp_tail=left_half_ptr;
+    for (i = 0; i < midIndex; i++)
+        head = &(*head)->next;
 
-    for (i = 0; i < size && right_half_ptr; i++) {
-        if (tmp_head->n != right_half_ptr->n) {
-            reverse_listint(&left_half_ptr);
+    if ((size % 2) != 0) // odd number of nodes
+        head = &(*head)->next;
+
+    reverse_listint(head);
+
+    listint_t *tmp = *head;
+
+    for (i = 0; i < midIndex; i++)
+        tmp = tmp->next;
+
+    while (tmp != NULL)
+    {
+        if ((*head)->n != tmp->n)
             return (0);
-        }
-        tmp_tail=tmp_head;
-        tmp_head=tmp_head->next;
-        right_half_ptr=right_half_ptr->next;
+
+        *head = (*head)->next;
+        tmp = tmp->next;
     }
 
-    reverse_listint(&left_half_ptr);
-
-    if (i == size && !right_half_ptr) {
-        return (1);
-    } else {
-        return (0);
-    }
+    return (1);
 }
