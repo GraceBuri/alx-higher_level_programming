@@ -5,7 +5,8 @@
 class Square:
 
     """Class representation of a square
-    
+
+
     Attribute:
     None
     Methods:
@@ -13,4 +14,4 @@ class Square:
 
 
     """
-        pass
+    pass
