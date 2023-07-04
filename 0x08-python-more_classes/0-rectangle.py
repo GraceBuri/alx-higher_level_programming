@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-class Rectangle:
-    # Class to define a rectangle
+"""define an empty rectangle class"""
 
+
+class Rectangle:
+    """representation of a triangle rectangle"""
     pass
