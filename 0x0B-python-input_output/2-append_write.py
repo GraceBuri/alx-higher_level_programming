@@ -3,8 +3,6 @@
 
 
 def append_write(filename="", text=""):
-    try:
-        with open(filename, 'a', encoding="utf-8") as f:
-            f.write(text)
-    except Exception as e:
-        raise e
+    """appends gicen text at end of file"""
+    with open(filename, 'a', encoding="utf-8") as f:
+        return f.write(text)
