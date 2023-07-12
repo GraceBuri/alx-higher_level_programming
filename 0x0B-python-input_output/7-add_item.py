@@ -1,36 +1,15 @@
 #!/usr/bin/python3
 import sys
-import json
-
-
-def save_to_json_file(items, filename):
-    """ Function that saves a list of items to a JSON file
-
-    Args:
-        items: list of items
-        filename: filename
-
-    """
-    with open(filename, 'w', encoding="utf-8") as f:
-        json.dump(items, f)
-
-
-def load_from_json_file(filename):
-    """ Function that loads a list of items from a JSON file
-
-    Args:
-        filename: filename
-
-    Returns:
-        list of items
-
-    """
-    with open(filename, 'r', encoding="utf-8") as f:
-        return json.load(f)
 
 
 if __name__ == "__main__":
-    items = []
-    for arg in sys.argv[1:]:
-        items.append(arg)
-    save_to_json_file(items, "add_item.json")
+    save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
+    load_from_json_file = \
+            __import__('6-load_from_json_file').add_item.json_file
+
+    try:
+        item = load_from_json_file("add_item.json")
+    except FIleNotFoundError:
+        item = []
+    item.extend(sys.argv[1:]
+    save_to_jsin_file(item, "add_item.json")
