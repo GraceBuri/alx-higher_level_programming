@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""display all values in state table"""
 import sys
 import MySQLdb
 

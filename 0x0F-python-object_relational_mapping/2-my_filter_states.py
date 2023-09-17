@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""list all arguments with a specific pattern"""
 import sys
 import MySQLdb
 

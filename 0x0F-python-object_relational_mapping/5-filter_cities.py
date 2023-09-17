@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""list state name from user argument"""
 import sys
 import MySQLdb
 
