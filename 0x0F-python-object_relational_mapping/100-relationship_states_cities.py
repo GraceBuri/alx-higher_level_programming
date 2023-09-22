@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     newstate = State(name='California')
     newcity = City(name='San Francisco')
-    mewstate.cities.append(newcity)
+    newstate.cities.append(newcity)
 
     session.add(newstate)
     session.add(newcity)
